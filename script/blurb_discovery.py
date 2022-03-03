@@ -99,7 +99,7 @@ def parsing_progress(targetpath, agent_list):
             
 def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    targetpath = os.path.join(os.path.dirname(os.path.abspath("")), "data", "dir/subdir") ##Add final location subdirectories below 'data'
+    targetpath = os.path.join(os.path.dirname(os.path.abspath("")), "data", "nsiVSRZ/daily") ##Add final location subdirectories below 'data'
     agent_list = {}
     parsing_progress(targetpath, agent_list)
     #print(agent_list.keys())
