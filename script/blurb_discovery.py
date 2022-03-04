@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 
+#This script will parse the files in a directory, looking for blurbs in sepecific language
+#(currently/originally Russian) and will then create both a CSV and HTML file outlining the
+#repeated blurbs of text within each document, how many files and lines each blurb is in,
+#and which file the blurb is found in most often.
+#This script expects that there is a directory named 'data' in the parent directory.
+#If no argument is given, the script assumes the files to parse are in the 'data'
+#directory. If an argument is given, the files in the given subdirectories will be parsed.
+
 import os
 import sys
 import re
 import subprocess
-import signal
-import shutil
-import time
 import csv
 from csv_2_html import create
 from alive_progress import alive_bar
@@ -97,9 +102,17 @@ def parsing_progress(targetpath, agent_list):
             bar()
     print("\nPreparing CSV summary of blurbs from {} files, with {} lines in total.".format(str(thing), str(linecount[0])))
             
+def sel_location():
+    location = ""
+    if len(sys.argv) < 2:
+        pass
+    else:
+        location = sys.argv[1].strip("/")
+    return location
+
 def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    targetpath = os.path.join(os.path.dirname(os.path.abspath("")), "data", "dir/subdir") ##Add final location subdirectories below 'data'
+    targetpath = os.path.join(os.path.dirname(os.path.abspath("")), "data", sel_location())
     agent_list = {}
     parsing_progress(targetpath, agent_list)
     #print(agent_list.keys())
