@@ -17,6 +17,18 @@ from csv_2_html import create
 from alive_progress import alive_bar
 
 #Function to open a file by type
+
+def title():
+    print("█████\  ██    ██   ██ █████\  █████\     ████\  ████  /███\ /███\ /███\ (█\    /█) █████ █████\(█\    /█)")
+    print("██  )█  ██    ██   ██ ██  )█  ██  )█     ██ \█\  ██   █( \█ █( \█ █/ \█  ██    ██/ ██    ██  /█ \█\  /█/")
+    print("██ /█/  ██    ██   ██ ██  █/  ██  █/     ██  ██| ██   \█\   █|    █   █  \█\  /█/  ██    ██  █/  \█\/█/")
+    print("█████\  ██    ██   ██ █████\  █████\ ███ ██  ██| ██    \█\  █|    █   █   ██  ██   ████  █████\   \██/")
+    print("██  )█\ ██    \█   █/ ██  \█\ ██  )█\    ██  ██| ██     \█\ █|    █   █   \█\/█/   ██    ██  \█\   ██")
+    print("██  |██ ██     █   █  ██   ██ ██  |██    ██  ██| ██      \█|█|    █   █    ████    ██    ██   |██  ██")
+    print("██  |██ ██     █   █  ██   \█ ██  |██    ██  ██  ██      |█|█|    █   █    \██/    ██    ██    \█  ██")
+    print("██  )█/ ██████ █   █  ██   |█ ██  )█/    ██ /█/  ██   █\ )█|█( /█ █\ /█     ██     █████ ██    |█  ██")
+    print("█████/  ██████ \███/  ██   |█ █████/     ████/  ████  \███/ \███/ \███/      █     █████ ██    |█  ██")
+
 def parse_dir(path, agent_list, linecount):
     success = 0
     linecount.append(0)
@@ -110,13 +122,18 @@ def sel_location():
         location = sys.argv[1].strip("/")
     return location
 
+def update_message():
+    print("\n**New updates coming soon: error debugs, extended file types, translations.**")
+
 def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     targetpath = os.path.join(os.path.dirname(os.path.abspath("")), "data", sel_location())
     agent_list = {}
+    title()
     parsing_progress(targetpath, agent_list)
     #print(agent_list.keys())
     #blurb_translate(agent_list)
     write_csv(agent_list)
     create('referenced.csv', 'referenced.html')
+    update_message()
 main()
